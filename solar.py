@@ -5,10 +5,10 @@ import time
 sunrise = [7.17, 6.72, 5.93, 5.08, 4.42, 4.16, 4.38, 4.88, 5.43, 6.03, 6.65, 7.13]
 sunset = [16.67, 17,27, 17.88, 18.49, 19.05, 19.41, 19.33, 18.76, 17.92, 17.05, 16.42, 16.27]
 
-def openAngle = 15 #Angle in degrees to which the solar tracker is already open.  15 degrees is not verified and is a placeholder.
+openAngle = 15 #Angle in degrees to which the solar tracker is already open.  15 degrees is not verified and is a placeholder.
 
 def setMotor(motor, outputPercent): #motor is a pwm instance
-	if -1 <= outputPercent || outputPercent <= 1:
+	if -1 <= outputPercent or outputPercent <= 1:
 		outputAdded = outputPercent * 5
 		output = 15 + outputPercent
 		motor.ChangeDutyCycle(output)
@@ -26,13 +26,13 @@ def getSunsetTime():
 	return sunset[month]
 
 def getCurrentTime():
-	hour = 0.0 + int(time.strftime(%H))
-	minute = 0.0 + int(time.strftime(%M))
+	hour = 0.0 + int(time.strftime("%H"))
+	minute = 0.0 + int(time.strftime("%M"))
 	minute = minute / 60
 	hour = hour + minute
 	return hour
 
-def rotateToAngle(motor, encoder, angle):
+#def rotateToAngle(motor, encoder, angle):
 	#placeholder
 
 def solarTrack():
