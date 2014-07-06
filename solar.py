@@ -2,8 +2,8 @@ import RPi.GPIO as GPIO
 import time
 
 #sunrise and sunset are lists of the average time in hours since midnight for sunrise and sunset for each month in the local testing environment.
-def sunrise = [7.17, 6.72, 5.93, 5.08, 4.42, 4.16, 4.38, 4.88, 5.43, 6.03, 6.65, 7.13]
-def sunset = [16.67, 17,27, 17.88, 18.49, 19.05, 19.41, 19.33, 18.76, 17.92, 17.05, 16.42, 16.27]
+sunrise = [7.17, 6.72, 5.93, 5.08, 4.42, 4.16, 4.38, 4.88, 5.43, 6.03, 6.65, 7.13]
+sunset = [16.67, 17,27, 17.88, 18.49, 19.05, 19.41, 19.33, 18.76, 17.92, 17.05, 16.42, 16.27]
 
 def openAngle = 15 #Angle in degrees to which the solar tracker is already open.  15 degrees is not verified and is a placeholder.
 
