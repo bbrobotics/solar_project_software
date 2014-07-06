@@ -26,7 +26,11 @@ def getSunsetTime():
 	return sunset[month]
 
 def getCurrentTime():
-	#placeholder
+	hour = 0.0 + int(time.strftime(%H))
+	minute = 0.0 + int(time.strftime(%M))
+	minute = minute / 60
+	hour = hour + minute
+	return hour
 
 def rotateToAngle(motor, encoder, angle):
 	#placeholder
