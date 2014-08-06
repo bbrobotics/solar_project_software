@@ -32,20 +32,34 @@ def getCurrentTime():
 	hour = hour + minute
 	return hour
 
-#def rotateToAngle(motor, encoder, angle):
-	#placeholder
+def rotateToAngle(motor, encoder, angle):	#Angle will be in encoder tics for now.
+	ticksToRotate = angle - ticks
+	if(ticksToRotate < 0)
+		direction = 1
+	else
+		direction = -1
+	setMotor(motor, 0.5 * direction)	#Motor power level is a placeholder.
+	i = 0
+	
+	while i < abs(ticksToRotate):
+		GPIO.wait_for_edge(encoder, GPIO.RISING)
+		i++
+	setMotor(motor, 0)
+	angle = angle + (ticks * direction)
 
 def solarTrack():
 	startAngle = 180 - 15 * ((getSunsetTime() - getSunriseTime()) / 2)
 	currentAngle = startAngle + 15 * (getCurrentTime() - getSunriseTime())
 	setAngle = currentAngle + 180 - openAngle
-	#rotateToAngle(motor, encoder, setAngle) #placeholder, as the motor and encoder objects are not yet established.
+	rotateToAngle(Servo, Encoder, setAngle)
 
 GPIO.setmode(GPIO.BCM)
-LED1 = 18
+Encoder = 18
 Servo = 23
 
-GPIO.setup(LED1, GPIO.OUT)
+angle = 0
+
+GPIO.setup(Encoder, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(Servo, GPIO.OUT)
 
 p = GPIO.PWM(Servo, 100) #Creates a new pwm instance with the channel 25 (Servo) 
@@ -62,10 +76,5 @@ time.sleep(1)
 p.ChangeDutyCycle(15)
 time.sleep(1)
 p.stop()
-
-GPIO.output(LED1, True)
-
-time.sleep(1)
-
-GPIO.output(LED1, False)
+GPIO.output(LED1,		 False)
 GPIO.cleanup()
